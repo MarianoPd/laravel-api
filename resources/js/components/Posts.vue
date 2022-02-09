@@ -12,13 +12,22 @@
 
           <div class="pagination">
               <button
-                @click="this.getApi(pagination.current - 1)"
-                :disabled = "pagination.current = 1"
+                @click="getApi(pagination.current - 1)"
+                :disabled = "pagination.current === 1"
               ><<</button>
-              <button></button>
+
               <button
-                @click="this.getApi(pagination.current + 1)"
-                :disabled = "pagination.current = pagination.last"
+                v-for="i in pagination.last"
+                :key="i"
+                @click="getApi(i)"
+                :disabled = "pagination.current === i"
+              >
+                {{i}}
+              </button>
+
+              <button
+                @click="getApi(pagination.current + 1)"
+                :disabled = "pagination.current === pagination.last"
               >>></button>
           </div>
       </div>
