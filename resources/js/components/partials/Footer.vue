@@ -21,6 +21,7 @@ export default {
         background-color: steelblue;
         width: 100%;
         text-align: center;
+        color: white;
         h1{
             line-height: 50px;
         }            
