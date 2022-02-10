@@ -1,6 +1,6 @@
 <template>
   <main>
-      <div class="container">
+      <div v-if="posts" class="container">
           <div class="title">
               <h1>Posts</h1>
           </div>
@@ -31,17 +31,22 @@
               >>></button>
           </div>
       </div>
+      <div v-else class="container">
+          <Loading/>
+      </div>
   </main>
 </template>
 
 <script>
 import PostItem from './partials/PostItem.vue';
+import Loading from './partials/Loading.vue';
 
 export default {
     name: 'Posts',
 
     components:{
         PostItem,
+        Loading,
     },
 
     data(){
@@ -60,6 +65,7 @@ export default {
         getApi(page = 1){
             axios.get(this.apiUrl + page)
                 .then(res => {
+                    this.posts = null;
                     this.posts = res.data.data;
                     this.pagination = {
                         current: res.data.current_page,

@@ -3,7 +3,12 @@
     <h4>{{post.title}}</h4>
     <p>{{truncatedText}}</p>
     <p class="date">{{formatDate}}</p>
-
+    <p v-if="post.category" class="category">{{post.category.name}}</p>
+    <p v-if="post.tags">
+      <span v-for="tag in post.tags" :key="tag.id" class="tag">
+        {{tag.name}}
+      </span>
+    </p>
   </article>
 </template>
 
@@ -41,6 +46,17 @@ article{
   }
   .date{
     font-style: italic;
+  }
+  .category{
+    font-weight: bold;
+    color: rgb(150, 10, 64);
+  }
+  .tag{
+    padding: 2px 5px;
+    margin-right: 10px;
+    background-color:darkcyan;
+    color: white;
+    border-radius: 5px;
   }
 }
 
